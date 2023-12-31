@@ -105,5 +105,21 @@ insert into service_history (
 	'Synthetic oil',
 	79.99);
 
+CREATE OR REPLACE FUNCTION add_salesperson(_salesperson_id INTEGER, _first_name VARCHAR, _last_name VARCHAR, _email VARCHAR, _phone VARCHAR)
+RETURNS void 
+AS $MAIN$
+BEGIN
+	INSERT INTO salesperson(salesperson_id,first_name,last_name,email,phone)
+	VALUES(_salesperson_id, _first_name, _last_name, _email, _phone);
+END;
+$MAIN$
+LANGUAGE plpgsql;
+
+SELECT add_salesperson(2,'Brenda', 'Brendanson', 'brendab@cars4sale.com', '123-654-7890');
+
+select add_salesperson(3, 'Alec', 'Guiness', 'notobiwan@cars4sale.com', '123-098-4567');
+
+select * from salesperson;
+
 
 
